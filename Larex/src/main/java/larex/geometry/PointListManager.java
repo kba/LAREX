@@ -3,9 +3,10 @@ package larex.geometry;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Scalar;
+import org.bytedeco.javacpp.opencv_core.Mat;
+import org.bytedeco.javacpp.opencv_core.Point2d;
+import org.bytedeco.javacpp.opencv_core.Scalar;
+import static org.bytedeco.javacpp.opencv_core.*;
 
 public class PointListManager {
 
@@ -16,13 +17,13 @@ public class PointListManager {
 		setPointLists(new ArrayList<PointList>());
 	}
 
-	public Mat drawLinesIntoImage(ArrayList<org.opencv.core.Point> points, Mat image) {
+	public Mat drawLinesIntoImage(ArrayList<Point2d> points, Mat image) {
 		if (points != null && points.size() > 1) {
-			org.opencv.core.Point lastPoint = points.get(0);
+			Point2d lastPoint = points.get(0);
 
 			for (int i = 1; i < points.size(); i++) {
-				org.opencv.core.Point currentPoint = points.get(i);
-				Core.line(image, lastPoint, currentPoint, new Scalar(0), 2);
+				Point2d currentPoint = points.get(i);
+				line(image, lastPoint, currentPoint, new Scalar(0), 2);
 				lastPoint = currentPoint;
 			}
 		}
@@ -32,25 +33,25 @@ public class PointListManager {
 
 	public Mat drawPointListIntoImage(Mat image, double scaleFactor) {
 		Mat result = image.clone();
-		ArrayList<ArrayList<org.opencv.core.Point>> ocvPointLists = convertToOpenCV(scaleFactor);
+		ArrayList<ArrayList<Point2d>> ocvPointLists = convertToOpenCV(scaleFactor);
 
-		for (ArrayList<org.opencv.core.Point> ocvPoints : ocvPointLists) {
+		for (ArrayList<Point2d> ocvPoints : ocvPointLists) {
 			result = drawLinesIntoImage(ocvPoints, result);
 		}
 
 		return result;
 	}
 
-	public ArrayList<ArrayList<org.opencv.core.Point>> convertToOpenCV(double scaleFactor) {
-		ArrayList<ArrayList<org.opencv.core.Point>> allPoints = new ArrayList<ArrayList<org.opencv.core.Point>>();
+	public ArrayList<ArrayList<Point2d>> convertToOpenCV(double scaleFactor) {
+		ArrayList<ArrayList<Point2d>> allPoints = new ArrayList<ArrayList<Point2d>>();
 
 		for (PointList pointList : pointLists) {
-			ArrayList<org.opencv.core.Point> points = new ArrayList<org.opencv.core.Point>();
+			ArrayList<Point2d> points = new ArrayList<Point2d>();
 
 			for (int i = 0; i < pointList.getPoints().size(); i++) {
 				Point toConvert = pointList.getPoints().get(i);
 
-				org.opencv.core.Point point = new org.opencv.core.Point(scaleFactor * toConvert.getX(),
+				Point2d point = new Point2d(scaleFactor * toConvert.getX(),
 						scaleFactor * toConvert.getY());
 				points.add(point);
 			}

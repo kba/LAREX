@@ -2,12 +2,11 @@ package larex.dataManagement;
 
 import java.io.File;
 
-import org.opencv.core.Mat;
-import org.opencv.core.Size;
+import org.bytedeco.javacpp.opencv_core.Mat;
+import org.bytedeco.javacpp.opencv_core.Size;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
-import larex.segmentation.ImageProcessor;
 import larex.segmentation.result.SegmentationResult;
 
 /**

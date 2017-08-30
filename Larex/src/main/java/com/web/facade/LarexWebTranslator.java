@@ -7,9 +7,9 @@ import java.util.Map;
 
 import com.web.model.Book;
 import com.web.model.BookSettings;
+import com.web.model.PageSegmentation;
 import com.web.model.Point;
 import com.web.model.Polygon;
-import com.web.model.PageSegmentation;
 
 import larex.positions.Position;
 import larex.positions.PriorityPosition;

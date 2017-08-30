@@ -3,11 +3,10 @@ package larex.geometry;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint;
+import org.bytedeco.javacpp.opencv_core.Point2d;
 
 import larex.regions.type.RegionType;
-import larex.segmentation.ImageProcessor;
+import util.opencv.MatOfPoint;
 
 public class PointList {
 
@@ -41,12 +40,12 @@ public class PointList {
 	 */
 	public MatOfPoint calcMatOfPoint(int sourceHeight, int goalHeight) {
 		System.out.print(sourceHeight + " | "+goalHeight);
-		org.opencv.core.Point[] ocvPoints = new org.opencv.core.Point[points.size()];
+		Point2d[] ocvPoints = new Point2d[points.size()];
 		double scaleFactor = (double) goalHeight / sourceHeight;
 
 		for (int i = 0; i < points.size(); i++) {
 			Point point = points.get(i);
-			ocvPoints[i] = new org.opencv.core.Point(scaleFactor * point.getX(), scaleFactor * point.getY());
+			ocvPoints[i] = new Point2d(scaleFactor * point.getX(), scaleFactor * point.getY());
 		}
 
 		MatOfPoint matOfPoints = new MatOfPoint(ocvPoints);

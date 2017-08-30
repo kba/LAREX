@@ -12,14 +12,14 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.bytedeco.javacpp.opencv_core.Point;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.Point;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import larex.segmentation.result.ResultRegion;
 import larex.dataManagement.Page;
+import larex.segmentation.result.ResultRegion;
 
 public class PageXMLWriter {
 

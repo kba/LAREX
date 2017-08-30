@@ -2,7 +2,7 @@ package larex.export;
 
 import java.util.ArrayList;
 
-import org.opencv.core.Mat;
+import org.bytedeco.javacpp.opencv_core.Mat;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
